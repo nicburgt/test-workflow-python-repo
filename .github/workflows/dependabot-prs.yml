@@ -3,6 +3,7 @@ name: Dependabot Pull Request (auto approve)
 on: pull_request
 permissions:
   pull-requests: write
+  contents: write
 jobs:
   dependabot:
     runs-on: ubuntu-latest
