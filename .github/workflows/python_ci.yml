@@ -1,0 +1,31 @@
+name: Python Default CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  python_version: 3.13
+
+jobs:
+  # Silly workaround due to env limitations with reusable workflows.
+  # See: https://github.com/orgs/community/discussions/26671
+  envvars:
+    runs-on: ubuntu-22.04
+    outputs:
+      python_version: ${{ env.python_version }}
+    steps:
+      - run: echo "exposing environment variables as outputs"
+  codeqa:
+    needs: envvars
+    uses: nicburgt/.github/.github/workflows/codeqa.yml@94dcf787014fa7b267cb0d477603117d778081cc
+    with:
+      python-version: ${{ needs.envvars.outputs.python_version }}
+  tests:
+    needs: envvars
+    uses: nicburgt/.github/.github/workflows/tests.yml@cf7ce658eb1d6d18204930286118b61af0932e45
+    with:
+      python-version: ${{ needs.envvars.outputs.python_version }}
+      test-results-artifact-name: 'coverage-results'
