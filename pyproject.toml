@@ -24,4 +24,5 @@ package-mode = false
 ruff = "^0.14.3"
 mypy = "^1.18.2"
 pytest = "^8.4.2"
+pytest-cov = "^7.0.0"
 
