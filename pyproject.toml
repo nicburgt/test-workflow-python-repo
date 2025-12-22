@@ -21,7 +21,7 @@ package-mode = false
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.14.9"
+ruff = "^0.14.10"
 mypy = "^1.19.1"
 pytest = "^9.0.2"
 pytest-cov = "^7.0.0"
